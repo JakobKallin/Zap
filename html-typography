@@ -1,0 +1,51 @@
+#!/usr/bin/env php
+<?php
+
+set_error_handler(function($severity, $message, $file, $line) {
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
+libxml_use_internal_errors(true);
+
+function process_node($node) {
+    if ($node->nodeType === XML_HTML_DOCUMENT_NODE) {
+        process_node($node->documentElement);
+    }
+    else if ($node->nodeType === XML_ELEMENT_NODE) {
+        foreach ($node->childNodes as $childNode) {
+            process_node($childNode);
+        }
+        foreach (['alt', 'title'] as $attribute) {
+            if ($node->hasAttribute($attribute)) {
+                $node->setAttribute($attribute, process_string($node->getAttribute($attribute)));
+            }
+        };
+    }
+    else if ($node->nodeType === XML_TEXT_NODE) {
+        $node->nodeValue = process_string($node->nodeValue);
+    }
+
+    return $node;
+}
+
+function process_string($string) {
+    $replacements = [
+        // Closing quotes first because they often match the opening quote
+        // pattern as well (when followed by commas, for instance). Note that \S
+        // means non-whitespace.
+        '/(\S)"/' => '$1”', // Double quote after word
+        '/"(\S)/' => '“$1', // Double quote before word
+        "/(\S)'/" => '$1’', // Single quote after word
+        "/'(\S)/" => '‘$1', // Single quote before word
+        '/ - /' => '—', // EM dash
+    ];
+    $result = $string;
+    foreach ($replacements as $pattern => $replacement) {
+        $result = preg_replace($pattern, $replacement, $result);
+    }
+    return $result;
+}
+
+$doc = new \DOMDocument();
+$doc->loadHTML(file_get_contents('php://stdin'));
+process_node($doc);
+print $doc->saveHTML();

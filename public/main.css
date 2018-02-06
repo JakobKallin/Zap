@@ -1,0 +1,263 @@
+:root {
+    --content-width: 45rem;
+    --light-red: hsl(0, 85%, 40%);
+    --dark-red: hsl(0, 80%, 30%);
+    --red-gradient: linear-gradient(to bottom, var(--light-red) 0%, var(--light-red) 50%, var(--dark-red) 50%, var(--dark-red) 100%);
+    --light-blue: hsl(220, 85%, 40%);
+    --dark-blue: hsl(220, 80%, 30%);
+    --blue-gradient: linear-gradient(to bottom, var(--light-blue) 0%, var(--light-blue) 50%, var(--dark-blue) 50%, var(--dark-blue) 100%);
+}
+
+em, cite, i {
+    font-style: italic;
+}
+
+html {
+    font-family: Roboto, sans-serif;
+    background-color: black;
+}
+
+body {
+    position: relative;
+}
+
+@media (min-width: 45rem) {
+    body {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+
+body > * {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50vh;
+    width: 100%;
+    height: 50vh;
+    background-image: linear-gradient(to bottom, transparent, black);
+}
+
+header {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-family: "Roboto Condensed", sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+@media (min-width: 45rem) {
+    header {
+        display: flex;
+    }
+}
+
+#background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -1;
+}
+
+#live {
+    padding: 0.75rem;
+    font-size: 1.5rem;
+    color: white;
+    background-image: var(--red-gradient);
+}
+
+#breaking-news {
+    padding: 0.75rem;
+    font-size: 2.25rem;
+    color: white;
+    background-image: var(--red-gradient);
+}
+
+#headline {
+    align-self: stretch;
+    padding: 0.75rem;
+    font-size: 4.5rem;
+    color: black;
+    background-color: white;
+}
+
+#clock-and-ticker {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+}
+
+#clock {
+    padding: 0.75rem;
+    font-size: 1.5rem;
+    color: white;
+    background-color: black;
+}
+
+#ticker {
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1.5rem;
+    color: white;
+    background-image: var(--blue-gradient);
+    display: flex;
+    flex-direction: row;
+}
+
+#ticker > :not(:last-child):after {
+    content: "•";
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+main {
+    width: 100%;
+    max-width: var(--content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+    line-height: 1.5;
+    color: white;
+    background-color: hsla(220, 50%, 5%, 0.75);
+}
+
+@media (min-width: 45rem) {
+    main {
+        text-align: justify;
+    }
+}
+
+main .intro {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: bold;
+}
+
+.table-of-contents {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.table-of-contents > * {
+    display: block;
+}
+
+.table-of-contents > :not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 45rem) {
+    .table-of-contents {
+        flex-direction: row;
+    }
+
+    .table-of-contents > * {
+        margin-bottom: 0 !important;
+    }
+
+    .table-of-contents > :not(:last-child):after {
+        content: "•";
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+main section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+main h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: bold;
+}
+
+main h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+main p:not(:last-child),
+main ol:not(:last-child),
+main ul:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+dfn {
+    font-style: italic;
+}
+
+main ol, main ul {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+main li {
+    display: list-item;
+}
+
+main ol li {
+    list-style-type: decimal;
+}
+
+main ul li {
+    list-style-type: square;
+}
+
+main li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+main a {
+    color: hsl(210, 100%, 50%);
+    text-decoration: underline;
+}
+
+main .meta {
+    font-style: italic;
+    color: hsl(0, 0%, 75%);
+}
+
+main strong {
+    font-weight: bold;
+}
+
+.back-link {
+    align-self: center;
+    color: white;
+    text-decoration: underline;
+}
+
+.back-link::before {
+    content: "« ";
+}
+
+.example-page header {
+    margin-bottom: 1.5rem;
+}

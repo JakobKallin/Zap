@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# [B] makes sure the query parameter is properly escaped. [NE] does not appear to be necessary but should (according to the documentation and Stack Overflow) prevent the question mark from being encoded as well (although that does not seem to happen even with [NE] omitted).
+RewriteRule ^(.*)$ /remote/?$1 [R,B]

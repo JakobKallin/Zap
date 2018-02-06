@@ -1,0 +1,378 @@
+@font-face {
+    src: url("../geometry-soft-pro.woff");
+    font-family: "Geometry Soft Pro";
+}
+
+:root {
+    --light-red: hsl(0, 85%, 40%);
+    --dark-red: hsl(0, 80%, 30%);
+    --red-gradient: linear-gradient(to bottom, var(--light-red) 0%, var(--light-red) 50%, var(--dark-red) 50%, var(--dark-red) 100%);
+    --light-blue: hsl(220, 85%, 40%);
+    --dark-blue: hsl(220, 80%, 30%);
+    --blue-gradient: linear-gradient(to bottom, var(--light-blue) 0%, var(--light-blue) 50%, var(--dark-blue) 50%, var(--dark-blue) 100%);
+}
+
+em {
+    font-style: italic;
+}
+
+html {
+    height: 100%;
+    line-height: 1;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 4vh;
+}
+
+body > * {
+    position: relative;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+#background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+#live {
+    padding: 1.5vh;
+    font-size: 3vh;
+    color: white;
+    background-image: var(--red-gradient);
+}
+
+#join-url {
+    margin-left: 2vh;
+    padding: 1.5vh;
+    font-size: 3vh;
+    color: white;
+    background-image: var(--blue-gradient);
+}
+
+#fullscreen-button {
+    font-size: 3vh;
+    margin-left: 2vh;
+    padding-left: 1.5vh;
+    padding-right: 1.5vh;
+}
+
+#join-url,
+#fullscreen-button {
+    transition-property: opacity, transform;
+    transition-duration: 0.5s;
+}
+
+.fullscreen #join-url,
+.fullscreen #fullscreen-button {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+#content {
+    flex: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#info {
+    width: 75vh;
+    padding: 1em;
+    font-size: 3vh;
+    text-transform: none;
+    color: white;
+    background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+#info h2 {
+    font-size: 4vh;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 0.25em;
+}
+
+#info ul {
+    line-height: 1.5;
+    column-count: 2;
+    column-gap: 2.5em;
+}
+
+#breaking-news {
+    padding: 1.5vh;
+    font-size: 4.5vh;
+    color: white;
+    background-image: var(--red-gradient);
+}
+
+.headline-box {
+    position: relative;
+    align-self: stretch;
+}
+
+.headline {
+    padding: 1.5vh;
+    font-size: 9vh;
+    color: black;
+    background-color: white;
+}
+
+.headline:first-child[hidden] {
+    display: block;
+}
+
+.headline:not(:first-child) {
+    display: none;
+}
+
+.headline::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.headline:first-child::after {
+    animation-name: collapse-width;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.headline:first-child[hidden]::after {
+    animation-name: expand-width;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes expand-width {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes collapse-width {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}
+
+#clock-and-ticker {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+}
+
+#clock {
+    padding: 1.5vh;
+    font-size: 3vh;
+    color: white;
+    background-color: black;
+}
+
+.ticker {
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+    padding: 1.5vh;
+    font-size: 3vh;
+    color: white;
+    background-image: var(--blue-gradient);
+    display: flex;
+    flex-direction: row;
+}
+
+.ticker-list {
+    display: flex;
+    flex-direction: row;
+    animation-name: ticker;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes ticker {
+    to {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.ticker-list > ::after {
+    content: "•";
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+.microblog {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.microblog-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 4vh;
+    padding-bottom: 0;
+}
+
+.microblog-heading-title {
+    padding: 1.5vh;
+    font-size: 3vh;
+    color: white;
+    background-image: var(--blue-gradient);
+}
+
+.microblog-heading-disclaimer {
+    padding: 1vh;
+    padding-bottom: 0.5vh;
+    font-size: 1.5vh;
+    color: white;
+    text-shadow: 0 0 1vh black;
+}
+
+.microblog-logo {
+    font-family: "Geometry Soft Pro", sans-serif;
+    font-size: 2vh;
+    text-transform: lowercase;
+}
+
+.microblog-post-list {
+    position: relative;
+    width: 60vh;
+}
+
+.microblog-post-list::before {
+    content: "Waiting for chimes…";
+    position: absolute;
+    display: block;
+    left: 4vh;
+    right: 4vh;
+    top: 0;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    text-align: center;
+    font-size: 2vh;
+    text-transform: none;
+    color: hsl(0, 0%, 50%);
+    background-color: white;
+}
+
+.microblog-post-list:not(.blank)::before {
+    animation-name: slide-down-and-fade-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.microblog-post {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding-left: 4vh;
+    padding-right: 4vh;
+    animation-name: slide-from-left;
+    animation-duration: 1s;
+}
+
+@keyframes slide-from-left {
+    from { transform: translateX(100%) }
+}
+
+.microblog-post.in:not(:last-child) {
+    animation-name: slide-down-and-fade-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-down-and-fade-out {
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.microblog-post-body, .microblog-author {
+    padding: 2vh;
+    font-size: 3vh;
+    line-height: 1.25;
+    text-transform: none;
+    background-color: white;
+}
+
+.microblog-author {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 1vh;
+}
+
+.microblog-author-portrait {
+    width: 6vh;
+    height: 6vh;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2vh;
+}
+
+.microblog-author-text {
+    flex: 1;
+}
+
+.microblog-author-name {
+    font-size: 2.25vh;
+    margin-bottom: 0.25vh;
+}
+
+.microblog-author-location {
+    font-size: 2vh;
+    color: hsl(0, 0%, 50%);
+}
+
+.microblog-post-body {
+    padding-top: 0;
+}
+
+.idle * {
+    cursor: none !important;
+}

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -e
+set -u
+shopt -s globstar
+
+if [[ "$#" -ne 1 ]]; then
+    printf "Usage: build <output_dir>\\n"
+    exit 1
+fi
+
+SCRIPT_DIR=$(dirname "$0")
+OUTPUT_DIR="$1"
+
+rsync --archive --compress --delete --exclude=.git "$SCRIPT_DIR/public/" "$OUTPUT_DIR"
+
+# Insert proper typographical characters in HTML files.
+for HTML_FILE in "$1"/**/*.html; do
+    HTML=$(<"$HTML_FILE")
+    echo "$HTML" | "$SCRIPT_DIR/html-typography" > "$HTML_FILE"
+done
+
+"$SCRIPT_DIR/babel" "$OUTPUT_DIR" --out-dir "$OUTPUT_DIR"
+"$SCRIPT_DIR/postcss" "$OUTPUT_DIR/**/*.css" --replace --use postcss-cssnext postcss-css-variables

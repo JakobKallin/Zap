@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="example-page">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Zap: Technical details</title>
+        <meta name="description" content="Technical details on how the Zap Screen and Zap Remote are implemented.">
+        <link rel="stylesheet" href="../reset.css">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i">
+        <script>
+            var _paq = _paq || [];
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//statistics.tabletopsoftware.net/piwik/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '7']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href=".." class="back-link">Back to rules</a>
+        </header>
+        <main>
+            <h1 class="intro">Technical details</h1>
+
+            <p>The <a href="../screen"><cite>Zap</cite> Screen</a> communicates with every connected <cite>Zap</cite> Remote by sending messages via WebSockets through a central server hosted by us. The server acts only as a broadcaster and stores none of the posted content.</p>
+
+            <p>When the <cite>Zap</cite> Screen is opened, a random session ID is generated and included in the link used by players to connect to the session with the <cite>Zap</cite> Remote. No verification is made that the session ID isn't already in use, so it is possible, though unlikely, that a session ID will be generated that is already in use by other players. There is also no authentication required to join a session, so anybody who knows a session ID is able to join that session. While we store none of the posted content, we make no guarantees about which other players might be connected to the same session, either through random chance or intentionally.</p>
+
+            <p>If you want privacy guarantees or for other reasons want to be in full control of your <cite>Zap</cite> Screen, consider using the <a href="https://github.com/JakobKallin/Zap">source code</a> available on GitHub to host your own version.</p>
+        </main>
+        <img id="background" src="../background.jpg">
+    </body>
+</html>

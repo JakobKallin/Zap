@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Zap Remote</title>
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="../reset.css">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i">
+        <script src="main.js"></script>
+        <script>
+            var _paq = _paq || [];
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//statistics.tabletopsoftware.net/piwik/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '7']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
+    </head>
+    <body>
+        <form id="headline-form">
+            <p class="headline-input"></p>
+            <button type="submit" id="headline-button">Go Live!</button>
+        </form>
+        <form id="microblog-form">
+            <div class="microblog">
+                <div class="microblog-author">
+                    <img class="microblog-author-portrait" src="portraits/microblog.png" alt="">
+                    <div class="microblog-author-info">
+                        <div class="microblog-author-name" spellcheck="false"></div>
+                        <div class="microblog-author-location" spellcheck="false"></div>
+                    </div>
+                    <button type="button" class="microblog-random-author-button" tabindex="-1">Random User</button>
+                </div>
+                <p class="microblog-input"></p>
+            </div>
+            <button type="submit" id="microblog-button">Chime In!</button>
+        </form>
+        <img id="background" src="../background.jpg" alt="">
+    </body>
+</html>

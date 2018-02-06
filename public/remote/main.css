@@ -1,0 +1,244 @@
+:root {
+    --light-red: hsl(0, 85%, 40%);
+    --dark-red: hsl(0, 80%, 30%);
+    --red-gradient: linear-gradient(to bottom, var(--light-red) 0%, var(--light-red) 50%, var(--dark-red) 50%, var(--dark-red) 100%);
+    --light-blue: hsl(220, 85%, 40%);
+    --dark-blue: hsl(220, 80%, 30%);
+    --blue-gradient: linear-gradient(to bottom, var(--light-blue) 0%, var(--light-blue) 50%, var(--dark-blue) 50%, var(--dark-blue) 100%);
+}
+
+em {
+    font-style: italic;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    line-height: 1;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+body {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 2rem;
+}
+
+@media (max-width: 25rem) {
+    body {
+        padding: 1rem;
+    }
+}
+
+body > * {
+    position: relative;
+}
+
+#headline-form {
+    order: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: auto;
+}
+
+.headline-input {
+    align-self: stretch;
+    padding: 0.75rem;
+    font-size: 4.5rem;
+    border: 0;
+    text-transform: uppercase;
+    color: black;
+    background-color: white;
+}
+
+@media (max-width: 40rem) {
+    .headline-input {
+        font-size: 2.5rem;
+    }
+}
+
+.headline-input:not(:first-child) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    animation-name: slide-up-and-shrink;
+    animation-duration: 1s;
+}
+
+@keyframes slide-up-and-shrink {
+    to {
+        transform: translateY(-200%) scale(0);
+    }
+}
+
+.headline-input.blank::before {
+    content: "Enter headline…";
+    color: hsl(0, 0%, 50%);
+    pointer-events: none;
+}
+
+#headline-button {
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: 0;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    color: white;
+    background-image: var(--red-gradient);
+}
+
+#microblog-form {
+    order: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    width: 100%;
+    max-width: 30rem;
+    margin-bottom: 1rem;
+}
+
+.microblog {
+    padding: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    text-transform: none;
+    background-color: white;
+}
+
+.microblog:not(:first-child) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    animation-name: slide-left-and-shrink;
+    animation-duration: 1s;
+}
+
+.microblog:not(:first-child) button {
+    visibility: hidden;
+}
+
+@keyframes slide-left-and-shrink {
+    to {
+        transform: translateX(-100%) scale(0);
+    }
+}
+
+.microblog-author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.microblog-author-portrait {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.microblog-author-info {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.microblog-author-name {
+    font-size: 1.125rem;
+    margin-bottom: 0.125rem;
+}
+
+.microblog-author-name.blank::before {
+    content: "@Username";
+    color: hsl(0, 0%, 50%);
+    pointer-events: none;
+}
+
+.microblog-author-location {
+    font-size: 1rem;
+    color: hsl(0, 0%, 50%);
+}
+
+.microblog-author-location.blank::before {
+    content: "Location";
+    color: hsl(0, 0%, 50%);
+    pointer-events: none;
+}
+
+.microblog-random-author-button {
+    padding: 0.5rem;
+    border: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: white;
+    background-image: var(--blue-gradient);
+}
+
+@media (max-width: 25rem) {
+    .microblog-author {
+        flex-wrap: wrap;
+    }
+
+    .microblog-random-author-button {
+        order: -1;
+        flex-basis: 100%;
+        flex-shrink: 0;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.microblog-input.blank::before {
+    content: "What’s on your mind?";
+    color: hsl(0, 0%, 50%);
+    pointer-events: none;
+}
+
+#microblog-button {
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border: 0;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    color: white;
+    background-image: var(--blue-gradient);
+}
+
+#background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -1;
+}
